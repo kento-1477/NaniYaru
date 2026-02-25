@@ -1,0 +1,644 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		061D45BF1DF2441F8EA3D36B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95DC6C4099FCEDB406A476EF /* ContentView.swift */; };
+		0DCA2EFE035D8D06BE651DBF /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799AEE5A47214963B3866633 /* WidgetConstants.swift */; };
+		0DD343175824D8D1B32B1292 /* BucketWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3112E646492585CA6D410039 /* BucketWidget.swift */; };
+		12419A583767494B61D5E1BE /* TaskSectionPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269BFD80D643D04EAE7F06E3 /* TaskSectionPresentation.swift */; };
+		13CEF9A21600236C0D2C36FC /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB72FD83A63B2626B9686D8 /* TaskItem.swift */; };
+		14E29C59D2FA17A141027979 /* TaskSectionPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269BFD80D643D04EAE7F06E3 /* TaskSectionPresentation.swift */; };
+		2177EACD0E15A7C0F7D0AC98 /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD90FA6E2E54504102E9B6E7 /* AppRoute.swift */; };
+		32AF37DF90E1382DDB17893E /* SharedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF401D047D6259C990A0BBA0 /* SharedStore.swift */; };
+		4324CAF552624E1023584E17 /* NaniYaruWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBEBA939E11C920602A3E5F /* NaniYaruWidgetBundle.swift */; };
+		45EA0D63898C139CF781FE25 /* TaskSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0838A4C64AB626D3E2240555 /* TaskSection.swift */; };
+		5C800F5E9753756C061C4E3F /* AppRouteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43A6F092D585D8D95BCDC51 /* AppRouteTests.swift */; };
+		5E086C012DAA3B3CDD3D213A /* TaskRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7446D0F414E9855F046DDBBF /* TaskRepositoryTests.swift */; };
+		6ABCC4143A9C43E2B1708D0F /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D75C04020983D710F9A775 /* TaskRepository.swift */; };
+		8A339AC3AE98F1C6328A9EC8 /* BucketWidgetIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93C5BEEAFDCE5C01088D9B6 /* BucketWidgetIntent.swift */; };
+		9AE75339F0B638B311A517BB /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB72FD83A63B2626B9686D8 /* TaskItem.swift */; };
+		9DEC6BFD2A3D7788CEA619BD /* NaniYaruWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FF07A5202D0C4A9B19DA47E3 /* NaniYaruWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A2C313BFE5D3A5E1A4572C5A /* NaniYaruApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74F19D005D1A0F5B43D41A9 /* NaniYaruApp.swift */; };
+		B087E866C470D359787B55AE /* TaskSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0838A4C64AB626D3E2240555 /* TaskSection.swift */; };
+		BD0F1159AED624A4B5F110A1 /* WidgetConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799AEE5A47214963B3866633 /* WidgetConstants.swift */; };
+		D40C57575ACC6FE1C8996148 /* SectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D16289DA856AA32B77A34C3 /* SectionDetailView.swift */; };
+		D7FE7F3B2380E35E4AC708B0 /* TaskSectionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F24F56A8015C131582B3A6 /* TaskSectionEntity.swift */; };
+		DA9268BF126FE5FA360A52AB /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD90FA6E2E54504102E9B6E7 /* AppRoute.swift */; };
+		DD5C8F340B6774A7C32D9382 /* TaskSectionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F24F56A8015C131582B3A6 /* TaskSectionEntity.swift */; };
+		EA86D491969DD0BC2B8EE830 /* SharedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF401D047D6259C990A0BBA0 /* SharedStore.swift */; };
+		ECBC04A711287B7F9004B579 /* TaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D75C04020983D710F9A775 /* TaskRepository.swift */; };
+		EFD0D3E19CCF7CEEE28ED0E1 /* TaskInputEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EF07252DEEF046E082D04E3 /* TaskInputEditor.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1A1BDCD174BB20B9BFF5812B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB8C2F06D469DA276E82A35F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C7593D682F6265F9A8A87DE8;
+			remoteInfo = NaniYaru;
+		};
+		263A62A4E8C25BAE4D8F7B53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB8C2F06D469DA276E82A35F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FD3F405D256D17ED4B728455;
+			remoteInfo = NaniYaruWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9FE08B0A979A6B03DAB7F075 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9DEC6BFD2A3D7788CEA619BD /* NaniYaruWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0838A4C64AB626D3E2240555 /* TaskSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSection.swift; sourceTree = "<group>"; };
+		269BFD80D643D04EAE7F06E3 /* TaskSectionPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSectionPresentation.swift; sourceTree = "<group>"; };
+		3112E646492585CA6D410039 /* BucketWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketWidget.swift; sourceTree = "<group>"; };
+		37D75C04020983D710F9A775 /* TaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepository.swift; sourceTree = "<group>"; };
+		5ED206DDE7D0E3442E8D1875 /* NaniYaruTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = NaniYaruTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F82A3E30DF294AF6CC05166 /* NaniYaru.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = NaniYaru.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D16289DA856AA32B77A34C3 /* SectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionDetailView.swift; sourceTree = "<group>"; };
+		7446D0F414E9855F046DDBBF /* TaskRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRepositoryTests.swift; sourceTree = "<group>"; };
+		76F24F56A8015C131582B3A6 /* TaskSectionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSectionEntity.swift; sourceTree = "<group>"; };
+		799AEE5A47214963B3866633 /* WidgetConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetConstants.swift; sourceTree = "<group>"; };
+		8EF07252DEEF046E082D04E3 /* TaskInputEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskInputEditor.swift; sourceTree = "<group>"; };
+		95DC6C4099FCEDB406A476EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9CBEBA939E11C920602A3E5F /* NaniYaruWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaniYaruWidgetBundle.swift; sourceTree = "<group>"; };
+		B43A6F092D585D8D95BCDC51 /* AppRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouteTests.swift; sourceTree = "<group>"; };
+		B74F19D005D1A0F5B43D41A9 /* NaniYaruApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaniYaruApp.swift; sourceTree = "<group>"; };
+		BD90FA6E2E54504102E9B6E7 /* AppRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRoute.swift; sourceTree = "<group>"; };
+		DBB72FD83A63B2626B9686D8 /* TaskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
+		DF401D047D6259C990A0BBA0 /* SharedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStore.swift; sourceTree = "<group>"; };
+		F93C5BEEAFDCE5C01088D9B6 /* BucketWidgetIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketWidgetIntent.swift; sourceTree = "<group>"; };
+		FF07A5202D0C4A9B19DA47E3 /* NaniYaruWidgetExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = NaniYaruWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		06079878C7197639979F9331 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				DF401D047D6259C990A0BBA0 /* SharedStore.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		34D6683E22626D50169C3204 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				6EF37145B8717D3FF2F7D030 /* NaniYaruTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		4AECFE75874A36ADFE9833EB = {
+			isa = PBXGroup;
+			children = (
+				8908D859106A0F696831D2AA /* Sources */,
+				34D6683E22626D50169C3204 /* Tests */,
+				4FA74B9D767E61FD9045068E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4B48C0DFFBC320D5DC3EECC7 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				37D75C04020983D710F9A775 /* TaskRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		4FA74B9D767E61FD9045068E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5F82A3E30DF294AF6CC05166 /* NaniYaru.app */,
+				5ED206DDE7D0E3442E8D1875 /* NaniYaruTests.xctest */,
+				FF07A5202D0C4A9B19DA47E3 /* NaniYaruWidgetExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6EF37145B8717D3FF2F7D030 /* NaniYaruTests */ = {
+			isa = PBXGroup;
+			children = (
+				B43A6F092D585D8D95BCDC51 /* AppRouteTests.swift */,
+				7446D0F414E9855F046DDBBF /* TaskRepositoryTests.swift */,
+			);
+			path = NaniYaruTests;
+			sourceTree = "<group>";
+		};
+		81927ED3C2631D664380A6C9 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				AA2E83BBFB15FA7FF0CC18F4 /* Models */,
+				4B48C0DFFBC320D5DC3EECC7 /* Repository */,
+				FCCE4BE93404E218D199E54F /* Routing */,
+				06079878C7197639979F9331 /* Storage */,
+				DD902DEFC4CB9313A999EF9F /* Widget */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		83A8E4D90ECD3E7862DD6401 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				3112E646492585CA6D410039 /* BucketWidget.swift */,
+				F93C5BEEAFDCE5C01088D9B6 /* BucketWidgetIntent.swift */,
+				9CBEBA939E11C920602A3E5F /* NaniYaruWidgetBundle.swift */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+		8908D859106A0F696831D2AA /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				BD5E5C72ACCE47ADC56B8AF8 /* App */,
+				81927ED3C2631D664380A6C9 /* Shared */,
+				83A8E4D90ECD3E7862DD6401 /* Widget */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		AA2E83BBFB15FA7FF0CC18F4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DBB72FD83A63B2626B9686D8 /* TaskItem.swift */,
+				0838A4C64AB626D3E2240555 /* TaskSection.swift */,
+				269BFD80D643D04EAE7F06E3 /* TaskSectionPresentation.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BD5E5C72ACCE47ADC56B8AF8 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				95DC6C4099FCEDB406A476EF /* ContentView.swift */,
+				B74F19D005D1A0F5B43D41A9 /* NaniYaruApp.swift */,
+				6D16289DA856AA32B77A34C3 /* SectionDetailView.swift */,
+				8EF07252DEEF046E082D04E3 /* TaskInputEditor.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		DD902DEFC4CB9313A999EF9F /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				76F24F56A8015C131582B3A6 /* TaskSectionEntity.swift */,
+				799AEE5A47214963B3866633 /* WidgetConstants.swift */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+		FCCE4BE93404E218D199E54F /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				BD90FA6E2E54504102E9B6E7 /* AppRoute.swift */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		82DA40156B0F2F2296225675 /* NaniYaruTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4861D85C83B5A86C14163363 /* Build configuration list for PBXNativeTarget "NaniYaruTests" */;
+			buildPhases = (
+				5A113DBEC18DA4F4D0AD58F7 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5634997230F9164183B26BD /* PBXTargetDependency */,
+			);
+			name = NaniYaruTests;
+			packageProductDependencies = (
+			);
+			productName = NaniYaruTests;
+			productReference = 5ED206DDE7D0E3442E8D1875 /* NaniYaruTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C7593D682F6265F9A8A87DE8 /* NaniYaru */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3907AB6C869C753B39DE3E7 /* Build configuration list for PBXNativeTarget "NaniYaru" */;
+			buildPhases = (
+				A79181CFA3E466449E59F97D /* Sources */,
+				9FE08B0A979A6B03DAB7F075 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2BF5EA109B7B0D57E278FD65 /* PBXTargetDependency */,
+			);
+			name = NaniYaru;
+			packageProductDependencies = (
+			);
+			productName = NaniYaru;
+			productReference = 5F82A3E30DF294AF6CC05166 /* NaniYaru.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FD3F405D256D17ED4B728455 /* NaniYaruWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4D7D2BAB29DEEABBBC6FD4A1 /* Build configuration list for PBXNativeTarget "NaniYaruWidgetExtension" */;
+			buildPhases = (
+				9358CE521384239FB1958BD1 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NaniYaruWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = NaniYaruWidgetExtension;
+			productReference = FF07A5202D0C4A9B19DA47E3 /* NaniYaruWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EB8C2F06D469DA276E82A35F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = 839B3A153C2C3F44EDDB966F /* Build configuration list for PBXProject "NaniYaru" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 4AECFE75874A36ADFE9833EB;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C7593D682F6265F9A8A87DE8 /* NaniYaru */,
+				82DA40156B0F2F2296225675 /* NaniYaruTests */,
+				FD3F405D256D17ED4B728455 /* NaniYaruWidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5A113DBEC18DA4F4D0AD58F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C800F5E9753756C061C4E3F /* AppRouteTests.swift in Sources */,
+				5E086C012DAA3B3CDD3D213A /* TaskRepositoryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9358CE521384239FB1958BD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA9268BF126FE5FA360A52AB /* AppRoute.swift in Sources */,
+				0DD343175824D8D1B32B1292 /* BucketWidget.swift in Sources */,
+				8A339AC3AE98F1C6328A9EC8 /* BucketWidgetIntent.swift in Sources */,
+				4324CAF552624E1023584E17 /* NaniYaruWidgetBundle.swift in Sources */,
+				EA86D491969DD0BC2B8EE830 /* SharedStore.swift in Sources */,
+				13CEF9A21600236C0D2C36FC /* TaskItem.swift in Sources */,
+				6ABCC4143A9C43E2B1708D0F /* TaskRepository.swift in Sources */,
+				45EA0D63898C139CF781FE25 /* TaskSection.swift in Sources */,
+				D7FE7F3B2380E35E4AC708B0 /* TaskSectionEntity.swift in Sources */,
+				14E29C59D2FA17A141027979 /* TaskSectionPresentation.swift in Sources */,
+				BD0F1159AED624A4B5F110A1 /* WidgetConstants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A79181CFA3E466449E59F97D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2177EACD0E15A7C0F7D0AC98 /* AppRoute.swift in Sources */,
+				061D45BF1DF2441F8EA3D36B /* ContentView.swift in Sources */,
+				A2C313BFE5D3A5E1A4572C5A /* NaniYaruApp.swift in Sources */,
+				D40C57575ACC6FE1C8996148 /* SectionDetailView.swift in Sources */,
+				32AF37DF90E1382DDB17893E /* SharedStore.swift in Sources */,
+				EFD0D3E19CCF7CEEE28ED0E1 /* TaskInputEditor.swift in Sources */,
+				9AE75339F0B638B311A517BB /* TaskItem.swift in Sources */,
+				ECBC04A711287B7F9004B579 /* TaskRepository.swift in Sources */,
+				B087E866C470D359787B55AE /* TaskSection.swift in Sources */,
+				DD5C8F340B6774A7C32D9382 /* TaskSectionEntity.swift in Sources */,
+				12419A583767494B61D5E1BE /* TaskSectionPresentation.swift in Sources */,
+				0DCA2EFE035D8D06BE651DBF /* WidgetConstants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2BF5EA109B7B0D57E278FD65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FD3F405D256D17ED4B728455 /* NaniYaruWidgetExtension */;
+			targetProxy = 263A62A4E8C25BAE4D8F7B53 /* PBXContainerItemProxy */;
+		};
+		D5634997230F9164183B26BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C7593D682F6265F9A8A87DE8 /* NaniYaru */;
+			targetProxy = 1A1BDCD174BB20B9BFF5812B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4844DA4604D429EF36AA1B07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = Config/NaniYaruWidget.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Config/NaniYaruWidget-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.a81808.naniyaru.widget;
+				PRODUCT_NAME = NaniYaruWidgetExtension;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A5D441B23B4B72AD1CFC2016 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = Config/NaniYaruWidget.entitlements;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Config/NaniYaruWidget-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.a81808.naniyaru.widget;
+				PRODUCT_NAME = NaniYaruWidgetExtension;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A6ABB7DFC9B2CC1A4D78E57D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Config/NaniYaruTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.a81808.naniyaru.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NaniYaru.app/NaniYaru";
+			};
+			name = Debug;
+		};
+		B83B46922EFC992C71BAA1D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		BA0D6A0B64CCD64711B11BB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = Config/NaniYaru.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Config/NaniYaru-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.a81808.naniyaru;
+				PRODUCT_NAME = NaniYaru;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DAC73BC4360D43FA14138FE6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Config/NaniYaruTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.a81808.naniyaru.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NaniYaru.app/NaniYaru";
+			};
+			name = Release;
+		};
+		DB3001EF96C6B2B9AE26E2D6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		DFD43433492C080F4663BC3A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = Config/NaniYaru.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Config/NaniYaru-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.a81808.naniyaru;
+				PRODUCT_NAME = NaniYaru;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4861D85C83B5A86C14163363 /* Build configuration list for PBXNativeTarget "NaniYaruTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6ABB7DFC9B2CC1A4D78E57D /* Debug */,
+				DAC73BC4360D43FA14138FE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4D7D2BAB29DEEABBBC6FD4A1 /* Build configuration list for PBXNativeTarget "NaniYaruWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4844DA4604D429EF36AA1B07 /* Debug */,
+				A5D441B23B4B72AD1CFC2016 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		839B3A153C2C3F44EDDB966F /* Build configuration list for PBXProject "NaniYaru" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B83B46922EFC992C71BAA1D2 /* Debug */,
+				DB3001EF96C6B2B9AE26E2D6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C3907AB6C869C753B39DE3E7 /* Build configuration list for PBXNativeTarget "NaniYaru" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA0D6A0B64CCD64711B11BB9 /* Debug */,
+				DFD43433492C080F4663BC3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EB8C2F06D469DA276E82A35F /* Project object */;
+}

@@ -1,0 +1,56 @@
+name: iOS CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ios-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit-tests:
+    name: Unit Tests (iOS)
+    runs-on: macos-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Resolve simulator destination
+        id: destination
+        shell: bash
+        run: |
+          set -euo pipefail
+          DEST_ID="$(xcodebuild -project NaniYaru.xcodeproj -scheme NaniYaru -showdestinations | awk '
+            /platform:iOS Simulator/ && /name:iPhone/ {
+              if (match($0, /id:([^,}]+)/, m)) {
+                print m[1]
+                exit
+              }
+            }
+          ')"
+
+          if [ -z "$DEST_ID" ]; then
+            echo "No compatible iOS Simulator destination found."
+            exit 1
+          fi
+
+          echo "destination=id=$DEST_ID" >> "$GITHUB_OUTPUT"
+
+      - name: Run unit tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild \
+            -project NaniYaru.xcodeproj \
+            -scheme NaniYaru \
+            -destination "${{ steps.destination.outputs.destination }}" \
+            CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION=YES \
+            test

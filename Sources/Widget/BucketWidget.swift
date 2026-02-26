@@ -133,7 +133,7 @@ struct BucketWidget: Widget {
             BucketWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("NaniYaru⁉︎")
-        .description("選択した区分の上位タスクを表示")
+        .description("選択したカテゴリの上位タスクを表示")
         .supportedFamilies([.systemSmall, .systemMedium, .accessoryRectangular, .accessoryInline])
     }
 }

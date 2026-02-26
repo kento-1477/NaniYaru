@@ -107,10 +107,10 @@ struct ContentView: View {
                     }
 
                     Menu {
-                        Button("区分を追加") {
+                        Button("新しいカテゴリを作る") {
                             showAddSectionAlert = true
                         }
-                        Button("区分順を初期化") {
+                        Button("カテゴリの並びを最初に戻す") {
                             moveAllSectionsToDefaultOrder()
                         }
                     } label: {
@@ -133,8 +133,8 @@ struct ContentView: View {
         .sheet(isPresented: $showAddTaskSheet) {
             addTaskSheet
         }
-        .alert("区分を追加", isPresented: $showAddSectionAlert) {
-            TextField("区分名", text: $newSectionName)
+        .alert("カテゴリを追加", isPresented: $showAddSectionAlert) {
+            TextField("カテゴリ名", text: $newSectionName)
             Button("追加") { addSection() }
             Button("キャンセル", role: .cancel) {
                 newSectionName = ""
@@ -142,7 +142,7 @@ struct ContentView: View {
         } message: {
             Text("1〜12文字で入力")
         }
-        .alert("区分名を変更", isPresented: Binding(get: {
+        .alert("カテゴリ名を変更", isPresented: Binding(get: {
             renameSectionID != nil
         }, set: { presenting in
             if !presenting {
@@ -150,7 +150,7 @@ struct ContentView: View {
                 renameSectionName = ""
             }
         })) {
-            TextField("区分名", text: $renameSectionName)
+            TextField("カテゴリ名", text: $renameSectionName)
             Button("保存") {
                 renameSection()
             }
@@ -161,7 +161,7 @@ struct ContentView: View {
         } message: {
             Text("1〜12文字で入力")
         }
-        .confirmationDialog("区分とタスクを削除します", isPresented: Binding(get: {
+        .confirmationDialog("カテゴリとタスクを削除します", isPresented: Binding(get: {
             deleteSectionID != nil
         }, set: { presenting in
             if !presenting {
@@ -201,9 +201,9 @@ struct ContentView: View {
 
     private var emptyState: some View {
         VStack(spacing: 8) {
-            Text("区分がありません")
+            Text("カテゴリがありません")
                 .font(.system(.headline, design: .rounded))
-            Text("右上のメニューから区分を追加")
+            Text("右上のメニューからカテゴリを追加")
                 .font(.system(.subheadline, design: .rounded))
                 .foregroundStyle(.secondary)
         }
@@ -373,7 +373,7 @@ struct ContentView: View {
                     .font(.system(.subheadline, design: .rounded, weight: .semibold))
 
                 if orderedSections.isEmpty {
-                    Text("先に区分を追加してください")
+                    Text("先にカテゴリを追加してください")
                         .font(.system(.subheadline, design: .rounded))
                         .foregroundStyle(.secondary)
                 } else {
@@ -503,7 +503,7 @@ struct ContentView: View {
 
     private func presentAddTaskSheet() {
         guard !orderedSections.isEmpty else {
-            errorMessage = "先に区分を追加してください"
+            errorMessage = "先にカテゴリを追加してください"
             return
         }
 
@@ -521,7 +521,7 @@ struct ContentView: View {
 
     private func addTaskFromSheet() {
         guard let section = selectedSectionForSheet else {
-            errorMessage = "追加先の区分を選択してください"
+            errorMessage = "追加先のカテゴリを選択してください"
             return
         }
 

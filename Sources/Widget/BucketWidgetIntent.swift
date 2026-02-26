@@ -1,10 +1,10 @@
 import AppIntents
 
 struct BucketWidgetIntent: WidgetConfigurationIntent {
-    static var title: LocalizedStringResource = "区分を選択"
-    static var description = IntentDescription("表示したい区分を選びます")
+    static var title: LocalizedStringResource = "カテゴリを選択"
+    static var description = IntentDescription("表示したいカテゴリを選びます")
 
-    @Parameter(title: "区分")
+    @Parameter(title: "カテゴリ")
     var section: TaskSectionEntity?
 
     init() {

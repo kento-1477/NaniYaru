@@ -16,13 +16,13 @@ enum TaskRepositoryError: LocalizedError {
         case .invalidTaskText:
             return "タスクは1〜120文字で入力してください"
         case .invalidSectionName:
-            return "区分名は1〜12文字で入力してください"
+            return "カテゴリ名は1〜12文字で入力してください"
         case .duplicateSectionName:
-            return "同じ名前の区分がすでにあります"
+            return "同じ名前のカテゴリがすでにあります"
         case .invalidSectionOrder:
-            return "区分の並び順を更新できませんでした"
+            return "カテゴリの並び順を更新できませんでした"
         case let .pinLimitReached(limit):
-            return "ピン留めは1区分あたり最大\(limit)件です"
+            return "ピン留めは1カテゴリあたり最大\(limit)件です"
         }
     }
 }

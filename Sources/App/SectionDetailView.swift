@@ -56,16 +56,16 @@ struct SectionDetailView: View {
                 }
             } else {
                 VStack(spacing: 8) {
-                    Text("区分が見つかりません")
+                    Text("カテゴリが見つかりません")
                         .font(.system(.headline, design: .rounded))
-                    Text("ダッシュボードから区分を選び直してください")
+                    Text("ダッシュボードからカテゴリを選び直してください")
                         .font(.system(.subheadline, design: .rounded))
                         .foregroundStyle(.secondary)
                 }
                 .padding(24)
             }
         }
-        .navigationTitle(section?.name ?? "区分")
+        .navigationTitle(section?.name ?? "カテゴリ")
         .navigationBarTitleDisplayMode(.inline)
         .alert("エラー", isPresented: Binding(get: {
             errorMessage != nil

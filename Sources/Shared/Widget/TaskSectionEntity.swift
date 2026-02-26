@@ -3,7 +3,7 @@ import Foundation
 import SwiftData
 
 struct TaskSectionEntity: AppEntity, Identifiable {
-    static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "区分")
+    static var typeDisplayRepresentation = TypeDisplayRepresentation(name: "カテゴリ")
     static var defaultQuery = TaskSectionQuery()
 
     let id: UUID

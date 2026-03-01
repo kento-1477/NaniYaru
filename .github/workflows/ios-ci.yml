@@ -28,14 +28,21 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          DEST_LINE="$(xcodebuild -project NaniYaru.xcodeproj -scheme NaniYaru -showdestinations | grep -E 'platform:iOS Simulator.*name:iPhone' | head -n 1 || true)"
+          DEST_LINE="$(xcodebuild -project NaniYaru.xcodeproj -scheme NaniYaru -showdestinations \
+            | tr -d '\r' \
+            | grep 'platform:iOS Simulator' \
+            | grep -v 'placeholder' \
+            | head -n 1 || true)"
           DEST_ID="$(printf '%s\n' "$DEST_LINE" | sed -nE 's/.*id:([^,}]+).*/\1/p')"
 
           if [ -z "$DEST_ID" ]; then
             echo "No compatible iOS Simulator destination found."
+            echo "---- showdestinations ----"
+            xcodebuild -project NaniYaru.xcodeproj -scheme NaniYaru -showdestinations || true
             exit 1
           fi
 
+          echo "Using destination: $DEST_LINE"
           echo "destination=id=$DEST_ID" >> "$GITHUB_OUTPUT"
 
       - name: Run unit tests

@@ -28,14 +28,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          DEST_ID="$(xcodebuild -project NaniYaru.xcodeproj -scheme NaniYaru -showdestinations | awk '
-            /platform:iOS Simulator/ && /name:iPhone/ {
-              if (match($0, /id:([^,}]+)/, m)) {
-                print m[1]
-                exit
-              }
-            }
-          ')"
+          DEST_LINE="$(xcodebuild -project NaniYaru.xcodeproj -scheme NaniYaru -showdestinations | grep -E 'platform:iOS Simulator.*name:iPhone' | head -n 1 || true)"
+          DEST_ID="$(printf '%s\n' "$DEST_LINE" | sed -nE 's/.*id:([^,}]+).*/\1/p')"
 
           if [ -z "$DEST_ID" ]; then
             echo "No compatible iOS Simulator destination found."

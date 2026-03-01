@@ -170,12 +170,6 @@ struct SectionDetailView: View {
                 Button(task.isPinned ? "ピン解除" : "ピン留め") {
                     togglePin(task)
                 }
-                Button("上へ") {
-                    moveTask(task, by: -1, within: section)
-                }
-                Button("下へ") {
-                    moveTask(task, by: 1, within: section)
-                }
                 Divider()
                 Button("削除", role: .destructive) {
                     deleteTask(task)
@@ -223,27 +217,6 @@ struct SectionDetailView: View {
     private func deleteTask(_ task: TaskItem) {
         do {
             try TaskRepository.delete(task, allTasks: allTasks, context: modelContext)
-        } catch {
-            errorMessage = error.localizedDescription
-        }
-    }
-
-    private func moveTask(_ task: TaskItem, by delta: Int, within section: TaskSection) {
-        let orderedTasks = TaskRepository.orderedTasks(from: allTasks, in: section.id, includeDone: false)
-        guard let index = orderedTasks.firstIndex(where: { $0.id == task.id }) else {
-            return
-        }
-
-        let targetIndex = index + delta
-        guard targetIndex >= 0, targetIndex < orderedTasks.count else {
-            return
-        }
-
-        let source = IndexSet(integer: index)
-        let destination = delta > 0 ? targetIndex + 1 : targetIndex
-
-        do {
-            try TaskRepository.reorderTasks(in: section, tasks: allTasks, from: source, to: destination, context: modelContext)
         } catch {
             errorMessage = error.localizedDescription
         }

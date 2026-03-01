@@ -1,6 +1,9 @@
 import SwiftUI
 import SwiftData
 import UniformTypeIdentifiers
+#if canImport(UIKit)
+import UIKit
+#endif
 
 struct ContentView: View {
     @Binding var routeSectionID: UUID?
@@ -54,6 +57,13 @@ struct ContentView: View {
             return false
         }
         return payload.hasPrefix(Self.sectionDragPrefix)
+    }
+
+    private var isTaskDragActive: Bool {
+        guard let payload = activeDragPayload else {
+            return false
+        }
+        return payload.hasPrefix(Self.taskDragPrefix)
     }
 
     private var selectedSectionForSheet: TaskSection? {
@@ -216,6 +226,21 @@ struct ContentView: View {
         let doneCount = allTasks.filter { $0.sectionID == section.id && $0.isDone }.count
         let visibleTasks = Array(incompleteTasks.prefix(3))
         let hiddenCount = max(0, incompleteTasks.count - 3)
+        let isDropTarget = sectionDropTargetID == section.id
+        let isTaskDropTarget = isDropTarget && isTaskDragActive
+        let strokeColor: Color = {
+            if !isDropTarget {
+                return Color.black.opacity(0.08)
+            }
+            if isSectionDragActive {
+                return section.accentColor.opacity(0.78)
+            }
+            if isTaskDragActive {
+                return section.accentColor.opacity(0.62)
+            }
+            return Color.black.opacity(0.08)
+        }()
+        let strokeWidth: CGFloat = isDropTarget ? (isSectionDragActive ? 2.4 : 2.0) : 1.0
 
         return VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .top, spacing: 12) {
@@ -265,6 +290,13 @@ struct ContentView: View {
                     .font(.system(.caption, design: .rounded, weight: .medium))
                     .foregroundStyle(.secondary)
             }
+
+            if isTaskDropTarget {
+                Text("ここに移動")
+                    .font(.system(.caption, design: .rounded, weight: .semibold))
+                    .foregroundStyle(section.accentColor)
+                    .transition(.opacity)
+            }
         }
         .padding(14)
         .background(
@@ -273,12 +305,7 @@ struct ContentView: View {
         )
         .overlay(
             RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .stroke(
-                    sectionDropTargetID == section.id && isSectionDragActive
-                    ? section.accentColor.opacity(0.7)
-                    : Color.black.opacity(0.08),
-                    lineWidth: sectionDropTargetID == section.id && isSectionDragActive ? 2 : 1
-                )
+                .stroke(strokeColor, lineWidth: strokeWidth)
         )
         .contentShape(RoundedRectangle(cornerRadius: 18, style: .continuous))
         .onTapGesture {
@@ -296,7 +323,8 @@ struct ContentView: View {
                 activeDragPayload: $activeDragPayload,
                 sectionDropTargetID: $sectionDropTargetID,
                 commitSectionOrder: commitSectionOrderFromDrag,
-                handleTaskDrop: handleTaskDrop
+                handleTaskDrop: handleTaskDrop,
+                onDropCompleted: notifyDropCompleted
             )
         )
         .animation(.spring(response: 0.24, dampingFraction: 0.85), value: sectionOrderDuringDrag)
@@ -333,12 +361,6 @@ struct ContentView: View {
                 Button(task.isPinned ? "ピン解除" : "ピン留め") {
                     togglePin(task)
                 }
-                Button("上へ") {
-                    moveTask(task, by: -1, within: section)
-                }
-                Button("下へ") {
-                    moveTask(task, by: 1, within: section)
-                }
                 Divider()
                 Button("削除", role: .destructive) {
                     deleteTask(task)
@@ -372,6 +394,10 @@ struct ContentView: View {
                 Text("時間軸タグ")
                     .font(.system(.subheadline, design: .rounded, weight: .semibold))
 
+                Text("タグをタップして追加先のカテゴリを選ぶ")
+                    .font(.system(.caption, design: .rounded, weight: .medium))
+                    .foregroundStyle(.secondary)
+
                 if orderedSections.isEmpty {
                     Text("先にカテゴリを追加してください")
                         .font(.system(.subheadline, design: .rounded))
@@ -384,20 +410,6 @@ struct ContentView: View {
                             }
                         }
                         .padding(.vertical, 2)
-                    }
-
-                    if let selectedSectionForSheet {
-                        HStack(spacing: 8) {
-                            Image(systemName: "tag.fill")
-                                .font(.caption)
-                                .foregroundStyle(selectedSectionForSheet.accentColor)
-                            Text("追加先: \(selectedSectionForSheet.name)")
-                                .font(.system(.subheadline, design: .rounded, weight: .semibold))
-                            Spacer(minLength: 8)
-                            Text("未完了 \(incompleteCount(for: selectedSectionForSheet.id))件")
-                                .font(.system(.caption, design: .rounded, weight: .medium))
-                                .foregroundStyle(.secondary)
-                        }
                     }
                 }
 
@@ -425,27 +437,14 @@ struct ContentView: View {
 
     private func sectionTag(_ section: TaskSection) -> some View {
         let isSelected = addTaskSectionID == section.id
-        let pendingCount = incompleteCount(for: section.id)
 
         return Button {
             addTaskSectionID = section.id
         } label: {
             HStack(spacing: 6) {
-                Image(systemName: sectionIconName(for: section.name))
-                    .font(.caption)
                 Text(section.name)
                     .font(.system(.subheadline, design: .rounded, weight: .semibold))
                     .lineLimit(1)
-                if pendingCount > 0 {
-                    Text("\(pendingCount)")
-                        .font(.system(size: 11, weight: .bold, design: .rounded))
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 2)
-                        .background(
-                            Capsule(style: .continuous)
-                                .fill(Color.black.opacity(isSelected ? 0.12 : 0.08))
-                        )
-                }
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.caption)
@@ -465,29 +464,6 @@ struct ContentView: View {
             .contentShape(Capsule(style: .continuous))
         }
         .buttonStyle(.plain)
-    }
-
-    private func incompleteCount(for sectionID: UUID) -> Int {
-        allTasks.filter { $0.sectionID == sectionID && !$0.isDone }.count
-    }
-
-    private func sectionIconName(for sectionName: String) -> String {
-        if sectionName.contains("今日") {
-            return "sun.max.fill"
-        }
-        if sectionName.contains("今週") {
-            return "calendar"
-        }
-        if sectionName.contains("今月") {
-            return "calendar.circle"
-        }
-        if sectionName.contains("今年") {
-            return "flag.fill"
-        }
-        if sectionName.contains("いつか") {
-            return "leaf.fill"
-        }
-        return "tag.fill"
     }
 
     private func applyIncomingRoute(_ sectionID: UUID?) {
@@ -600,25 +576,16 @@ struct ContentView: View {
         }
     }
 
-    private func moveTask(_ task: TaskItem, by delta: Int, within section: TaskSection) {
-        let orderedTasks = TaskRepository.orderedTasks(from: allTasks, in: section.id, includeDone: false)
-        guard let index = orderedTasks.firstIndex(where: { $0.id == task.id }) else {
+    private func notifyDropCompleted(isSectionDrop: Bool, success: Bool) {
+        guard success else {
             return
         }
 
-        let targetIndex = index + delta
-        guard targetIndex >= 0, targetIndex < orderedTasks.count else {
-            return
-        }
-
-        let source = IndexSet(integer: index)
-        let destination = delta > 0 ? targetIndex + 1 : targetIndex
-
-        do {
-            try TaskRepository.reorderTasks(in: section, tasks: allTasks, from: source, to: destination, context: modelContext)
-        } catch {
-            errorMessage = error.localizedDescription
-        }
+        #if canImport(UIKit)
+        let style: UIImpactFeedbackGenerator.FeedbackStyle = isSectionDrop ? .medium : .light
+        let generator = UIImpactFeedbackGenerator(style: style)
+        generator.impactOccurred()
+        #endif
     }
 
     private func syncSectionOrderWithModel() {
@@ -724,6 +691,7 @@ private struct SectionCardDropDelegate: DropDelegate {
     @Binding var sectionDropTargetID: UUID?
     let commitSectionOrder: () -> Bool
     let handleTaskDrop: (_ payload: String, _ targetSectionID: UUID) -> Bool
+    let onDropCompleted: (_ isSectionDrop: Bool, _ success: Bool) -> Void
 
     func validateDrop(info: DropInfo) -> Bool {
         info.hasItemsConforming(to: [UTType.plainText.identifier])
@@ -771,11 +739,16 @@ private struct SectionCardDropDelegate: DropDelegate {
             return false
         }
 
-        if payload.hasPrefix(sectionPrefix) {
-            return commitSectionOrder()
+        let isSectionDrop = payload.hasPrefix(sectionPrefix)
+        let success: Bool
+        if isSectionDrop {
+            success = commitSectionOrder()
+        } else {
+            success = handleTaskDrop(payload, targetSectionID)
         }
 
-        return handleTaskDrop(payload, targetSectionID)
+        onDropCompleted(isSectionDrop, success)
+        return success
     }
 }
 

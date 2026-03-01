@@ -1,4 +1,7 @@
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#endif
 
 struct TaskInputEditor: View {
     @Binding var text: String
@@ -14,9 +17,7 @@ struct TaskInputEditor: View {
                     .padding(.vertical, 12)
             }
 
-            TextEditor(text: $text)
-                .font(.system(.body, design: .rounded))
-                .scrollContentBackground(.hidden)
+            EditorTextView(text: $text)
                 .padding(.horizontal, 8)
                 .padding(.vertical, 8)
                 .frame(minHeight: 44, maxHeight: 120)
@@ -32,3 +33,53 @@ struct TaskInputEditor: View {
     }
 }
 
+#if canImport(UIKit)
+private struct EditorTextView: UIViewRepresentable {
+    @Binding var text: String
+
+    func makeUIView(context: Context) -> UITextView {
+        let textView = UITextView()
+        textView.delegate = context.coordinator
+        textView.backgroundColor = .clear
+        textView.textColor = .label
+        textView.font = UIFont.preferredFont(forTextStyle: .body)
+        textView.textContainerInset = .zero
+        textView.textContainer.lineFragmentPadding = 0
+        textView.keyboardDismissMode = .interactive
+        textView.text = text
+        return textView
+    }
+
+    func updateUIView(_ uiView: UITextView, context: Context) {
+        if uiView.markedTextRange == nil, uiView.text != text {
+            uiView.text = text
+        }
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(text: $text)
+    }
+
+    final class Coordinator: NSObject, UITextViewDelegate {
+        private var text: Binding<String>
+
+        init(text: Binding<String>) {
+            self.text = text
+        }
+
+        func textViewDidChange(_ textView: UITextView) {
+            text.wrappedValue = textView.text
+        }
+    }
+}
+#else
+private struct EditorTextView: View {
+    @Binding var text: String
+
+    var body: some View {
+        TextEditor(text: $text)
+            .font(.system(.body, design: .rounded))
+            .scrollContentBackground(.hidden)
+    }
+}
+#endif

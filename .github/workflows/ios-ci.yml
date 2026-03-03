@@ -23,26 +23,39 @@ jobs:
       - name: Show Xcode version
         run: xcodebuild -version
 
-      - name: Resolve simulator destination
+      - name: Resolve test destination
         id: destination
         shell: bash
         run: |
           set -euo pipefail
-          DEST_LINE="$(xcodebuild -project NaniYaru.xcodeproj -scheme NaniYaru -showdestinations \
+          DESTINATIONS="$(xcodebuild -project NaniYaru.xcodeproj -scheme NaniYaru -showdestinations | tr -d '\r')"
+
+          DEST_LINE="$(printf '%s\n' "$DESTINATIONS" \
             | tr -d '\r' \
             | grep 'platform:iOS Simulator' \
             | grep -v 'placeholder' \
             | head -n 1 || true)"
+
+          DEST_KIND="simulator"
+
+          if [ -z "$DEST_LINE" ]; then
+            DEST_LINE="$(printf '%s\n' "$DESTINATIONS" \
+              | grep 'platform:macOS' \
+              | grep 'Designed for \[iPad,iPhone\]' \
+              | head -n 1 || true)"
+            DEST_KIND="mac"
+          fi
+
           DEST_ID="$(printf '%s\n' "$DEST_LINE" | sed -nE 's/.*id:([^,}]+).*/\1/p')"
 
           if [ -z "$DEST_ID" ]; then
-            echo "No compatible iOS Simulator destination found."
+            echo "No compatible test destination found."
             echo "---- showdestinations ----"
-            xcodebuild -project NaniYaru.xcodeproj -scheme NaniYaru -showdestinations || true
+            printf '%s\n' "$DESTINATIONS"
             exit 1
           fi
 
-          echo "Using destination: $DEST_LINE"
+          echo "Using destination ($DEST_KIND): $DEST_LINE"
           echo "destination=id=$DEST_ID" >> "$GITHUB_OUTPUT"
 
       - name: Run unit tests

@@ -1,0 +1,75 @@
+name: iOS CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ios-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit-tests:
+    name: Unit Tests (iOS)
+    runs-on: macos-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Resolve simulator destination
+        id: destination
+        shell: bash
+        run: |
+          set -euo pipefail
+          DESTINATIONS="$(xcodebuild -project NaniYaru.xcodeproj -scheme NaniYaru -showdestinations | tr -d '\r')"
+
+          DEST_LINE="$(printf '%s\n' "$DESTINATIONS" \
+            | grep 'platform:iOS Simulator' \
+            | grep -v 'placeholder' \
+            | head -n 1 || true)"
+
+          DEST_ID="$(printf '%s\n' "$DEST_LINE" | sed -nE 's/.*id:([^,}]+).*/\1/p')"
+
+          if [ -z "$DEST_ID" ]; then
+            echo "No iOS Simulator runtime detected. CI will run compile-only fallback."
+            echo "---- showdestinations ----"
+            printf '%s\n' "$DESTINATIONS"
+            echo "mode=build-only" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "Using destination (simulator): $DEST_LINE"
+          echo "mode=test" >> "$GITHUB_OUTPUT"
+          echo "destination=id=$DEST_ID" >> "$GITHUB_OUTPUT"
+
+      - name: Run unit tests (simulator)
+        if: steps.destination.outputs.mode == 'test'
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild \
+            -project NaniYaru.xcodeproj \
+            -scheme NaniYaru \
+            -destination "${{ steps.destination.outputs.destination }}" \
+            CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION=YES \
+            test
+
+      - name: Build-only fallback (no simulator runtime)
+        if: steps.destination.outputs.mode == 'build-only'
+        shell: bash
+        run: |
+          set -euo pipefail
+          xcodebuild \
+            -project NaniYaru.xcodeproj \
+            -scheme NaniYaru \
+            -destination 'generic/platform=iOS' \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            build
